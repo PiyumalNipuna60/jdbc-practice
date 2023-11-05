@@ -1,0 +1,25 @@
+CREATE TABLE Item(
+	ItemCode VARCHAR(10) PRIMARY KEY,
+	Description VARCHAR(50),
+	Price DECIMAL(10,2),
+	Qty INT 
+);
+
+create table Orders(
+   orderId varchar(35) primary key,
+   id varchar(35) not null,
+   date date not null,
+   constraint foreign key (id) references Customer(id)
+   on delete cascade on update cascade
+);
+
+create table OrderDetail(
+    orderId varchar(35) not null ,
+    ItemCode varchar(35) not null,
+    qty int not null,
+    unitPrice double not null,
+    constraint foreign key (orderId) references Orders(orderId)
+    on delete  cascade on update cascade,
+    constraint foreign key (ItemCode) references Item(ItemCode)
+    on delete cascade on update cascade
+);
